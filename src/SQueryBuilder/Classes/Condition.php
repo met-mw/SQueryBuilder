@@ -39,7 +39,7 @@ class Condition implements InterfaceCondition
         if ($value instanceof InterfaceQuery) {
             $value = "({$value->build()})";
         } elseif (is_string($value)) {
-            $value = "'{$value}'";
+            $value = $value == '?' ? $value : "'{$value}'";
         } elseif (is_null($value)) {
             $value = 'null';
         }
