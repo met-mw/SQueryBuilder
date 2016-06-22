@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/met_mw/squerybuilder/downloads)](https://packagist.org/packages/met_mw/squerybuilder)
 [![License](https://poser.pugx.org/met_mw/squerybuilder/license)](https://packagist.org/packages/met_mw/squerybuilder)
 # SDataGrid
-Simple independent library to generate sql queries.
+Simple independent library to generate SQL queries.
 
 ## Install
 ```
