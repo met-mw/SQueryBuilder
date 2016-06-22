@@ -45,7 +45,7 @@ class Select extends SUD implements InterfaceSelect {
 
         $query = 'SELECT'
             . ($this->sqlCalcFoundRows ? ' SQL_CALC_FOUND_ROWS' : '')
-            . (empty($fields) ? ' *' : $fields)
+            . ' ' . (empty($fields) ? '*' : $fields)
             . ' FROM'
             . " $tables"
             . (!empty($where) ? " {$where}" : '')
