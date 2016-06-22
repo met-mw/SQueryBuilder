@@ -14,18 +14,15 @@ class Delete extends SUD implements InterfaceDelete
 
     public function build()
     {
-        $tables = implode(', ', $this->tables);
+        $tables = '`' . implode('`, `', $this->tables) . '`';
         $usingTables = empty($this->usingTables) ? '' : ' USING ' . implode(', ', $this->usingTables);
         $where = $this->where->build();
         if (!empty($where)) {
             $where = " {$where}";
         }
         $query = 'DELETE FROM'
-            . PHP_EOL
-            . $tables
-            . PHP_EOL
-            . "{$usingTables}{$where}"
-            . PHP_EOL;
+            . " $tables"
+            . " {$usingTables}{$where}";
 
         return $query;
     }

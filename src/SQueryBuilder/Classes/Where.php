@@ -86,7 +86,7 @@ class Where implements InterfaceWhere
 
         $where = '';
         if (!empty($conditions)) {
-            $where .= 'WHERE' . PHP_EOL . implode(PHP_EOL, $conditions);
+            $where .= 'WHERE ' . implode(' ', $conditions);
         }
 
         return $where;

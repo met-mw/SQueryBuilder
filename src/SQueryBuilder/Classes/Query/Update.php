@@ -30,7 +30,7 @@ class Update extends SUD implements InterfaceUpdate
 
             $setsItems[] = "`{$field}`={$preparedValue}";
         }
-        $sets = implode(',' . PHP_EOL, $setsItems);
+        $sets = implode(', ', $setsItems);
 
         $where = $this->where->build();
         if (!empty($where)) {
@@ -42,13 +42,9 @@ class Update extends SUD implements InterfaceUpdate
         }
 
         $query = 'UPDATE'
-            . PHP_EOL
-            . "`{$this->table}`"
-            . PHP_EOL
-            . 'SET'
-            . PHP_EOL
-            . "{$sets}{$where}"
-            . PHP_EOL;
+            . " `{$this->table}`"
+            . ' SET'
+            . " {$sets}{$where}";
 
         return $query;
     }

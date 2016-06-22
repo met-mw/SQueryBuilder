@@ -65,13 +65,9 @@ class Insert implements InterfaceInsert
         $allValues = '(' . implode('), (', $valuesSets) . ')';
 
         $query = 'INSERT INTO'
-            . PHP_EOL
-            . "{$this->table} ({$fields})"
-            . PHP_EOL
-            . 'VALUES'
-            . PHP_EOL
-            . "{$allValues}"
-            . PHP_EOL;
+            . " `{$this->table}` ({$fields})"
+            . ' VALUES'
+            . " {$allValues}";
 
         return $query;
     }

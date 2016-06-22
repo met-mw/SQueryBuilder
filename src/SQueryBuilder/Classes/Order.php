@@ -21,7 +21,7 @@ class Order implements InterfaceOrder
             $orders[] = "`{$field}` {$direction}";
         }
 
-        return (!empty($orders) ? 'ORDER BY' . PHP_EOL : '') . implode(',' . PHP_EOL, $orders);
+        return (!empty($orders) ? 'ORDER BY ' : '') . implode(', ', $orders);
     }
 
     /**

@@ -34,7 +34,7 @@ class Select extends SUD implements InterfaceSelect {
      */
     public function build()
     {
-        $tables = implode(', ', $this->tables);
+        $tables = '`' . implode('`, `', $this->tables) . '`';
         $fieldsArray = [];
         foreach ($this->fields as $field => $alias) {
             $fieldsArray[] = "`{$field}`" . (!is_null($alias) ? " AS {$alias}" : '');
@@ -43,15 +43,15 @@ class Select extends SUD implements InterfaceSelect {
         $where = $this->where->build();
         $order = $this->order->build();
 
-        $query = 'SELECT' . PHP_EOL
-            . ($this->sqlCalcFoundRows ? ' SQL_CALC_FOUND_ROWS' . PHP_EOL : '')
-            . (empty($fields) ? '*' : $fields) . PHP_EOL
-            . 'FROM' . PHP_EOL
-            . $tables . PHP_EOL
-            . (!empty($where) ? $where . PHP_EOL : '')
-            . (!empty($order) ? $order . PHP_EOL : '')
-            . (!is_null($this->limit) ? "LIMIT {$this->limit}" . PHP_EOL : '')
-            . (!is_null($this->offset) ? "OFFSET {$this->offset}" . PHP_EOL : '');
+        $query = 'SELECT'
+            . ($this->sqlCalcFoundRows ? ' SQL_CALC_FOUND_ROWS' : '')
+            . (empty($fields) ? ' *' : $fields)
+            . ' FROM'
+            . $tables
+            . (!empty($where) ? " {$where}" : '')
+            . (!empty($order) ? " {$order}" : '')
+            . (!is_null($this->limit) ? " LIMIT {$this->limit}" : '')
+            . (!is_null($this->offset) ? " OFFSET {$this->offset}" : '');
 
         return $query;
     }
