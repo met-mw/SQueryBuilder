@@ -40,14 +40,16 @@ class Select extends SUD implements InterfaceSelect {
             $fieldsArray[] = "`{$field}`" . (!is_null($alias) ? " AS {$alias}" : '');
         }
         $fields = implode(', ', $fieldsArray);
+        $where = $this->where->build();
+        $order = $this->order->build();
 
         $query = 'SELECT' . PHP_EOL
-            . ($this->sqlCalcFoundRows ? ' SQL_CALC_FOUND_ROWS' : '') . PHP_EOL
-            . $fields . PHP_EOL
+            . ($this->sqlCalcFoundRows ? ' SQL_CALC_FOUND_ROWS' . PHP_EOL : '')
+            . (empty($fields) ? '*' : $fields) . PHP_EOL
             . 'FROM' . PHP_EOL
             . $tables . PHP_EOL
-            . $this->where->build() . PHP_EOL
-            . $this->order->build() . PHP_EOL
+            . (!empty($where) ? $where . PHP_EOL : '')
+            . (!empty($order) ? $order . PHP_EOL : '')
             . (!is_null($this->limit) ? "LIMIT {$this->limit}" . PHP_EOL : '')
             . (!is_null($this->offset) ? "OFFSET {$this->offset}" . PHP_EOL : '');
 
