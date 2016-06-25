@@ -37,7 +37,8 @@ class Select extends SUD implements InterfaceSelect {
         $tables = '`' . implode('`, `', $this->tables) . '`';
         $fieldsArray = [];
         foreach ($this->fields as $field => $alias) {
-            $fieldsArray[] = "{$field}" . (!is_null($alias) ? " AS {$alias}" : '');
+            $fieldName = $field == '*' ? $field : "`$field`";
+            $fieldsArray[] = "{$fieldName}" . (!is_null($alias) ? " AS {$alias}" : '');
         }
         $fields = implode(', ', $fieldsArray);
         $where = $this->where->build();
