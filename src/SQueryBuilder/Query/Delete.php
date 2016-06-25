@@ -1,12 +1,12 @@
 <?php
-namespace SQueryBuilder\Classes\Query;
+namespace SQueryBuilder\Query;
 
 
 use InvalidArgumentException;
-use SQueryBuilder\Classes\SUD;
-use SQueryBuilder\Interfaces\InterfaceDelete;
+use SQueryBuilder\SUD;
+use SQueryBuilder\DeleteInterface;
 
-class Delete extends SUD implements InterfaceDelete
+class Delete extends SUD implements DeleteInterface
 {
 
     protected $tables = [];

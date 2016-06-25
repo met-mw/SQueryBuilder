@@ -1,14 +1,14 @@
 <?php
-namespace SQueryBuilder\Classes\Query;
+namespace SQueryBuilder\Query;
 
 
 use InvalidArgumentException;
-use SQueryBuilder\Classes\Order;
-use SQueryBuilder\Classes\SUD;
-use SQueryBuilder\Interfaces\InterfaceOrder;
-use SQueryBuilder\Interfaces\InterfaceSelect;
+use SQueryBuilder\Order;
+use SQueryBuilder\SUD;
+use SQueryBuilder\OrderInterface;
+use SQueryBuilder\SelectInterface;
 
-class Select extends SUD implements InterfaceSelect {
+class Select extends SUD implements SelectInterface {
 
     protected $sqlCalcFoundRows = false;
 
@@ -16,7 +16,7 @@ class Select extends SUD implements InterfaceSelect {
     protected $tables = [];
     /** @var <string, string>[] */
     protected $fields = [];
-    /** @var InterfaceOrder */
+    /** @var OrderInterface */
     protected $order = null;
     /** @var int */
     protected $limit = null;
@@ -123,7 +123,7 @@ class Select extends SUD implements InterfaceSelect {
      * @param string $direction
      * @return $this
      */
-    public function order($field, $direction = InterfaceOrder::ASC)
+    public function order($field, $direction = OrderInterface::ASC)
     {
         $this->order->order($field, $direction);
         return $this;

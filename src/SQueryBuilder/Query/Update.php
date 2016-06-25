@@ -1,12 +1,11 @@
 <?php
-namespace SQueryBuilder\Classes\Query;
-
+namespace SQueryBuilder\Query;
 
 use Exception;
-use SQueryBuilder\Classes\SUD;
-use SQueryBuilder\Interfaces\InterfaceUpdate;
+use SQueryBuilder\SUD;
+use SQueryBuilder\UpdateInterface;
 
-class Update extends SUD implements InterfaceUpdate
+class Update extends SUD implements UpdateInterface
 {
 
     protected $table;

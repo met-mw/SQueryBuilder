@@ -1,12 +1,10 @@
 <?php
-namespace SQueryBuilder\Classes;
+namespace SQueryBuilder;
 
 
 use InvalidArgumentException;
-use SQueryBuilder\Interfaces\InterfaceCondition;
-use SQueryBuilder\Interfaces\InterfaceWhere;
 
-class Where implements InterfaceWhere
+class Where implements WhereInterface
 {
 
     protected $conditions = [];
@@ -36,10 +34,10 @@ class Where implements InterfaceWhere
     /**
      * Добавить условие
      *
-     * @param InterfaceCondition $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
-    public function addCondition(InterfaceCondition $condition)
+    public function addCondition(ConditionInterface $condition)
     {
         $this->conditions[] = $condition;
         return $this;
@@ -73,7 +71,7 @@ class Where implements InterfaceWhere
                 $preparedCondition = $condition();
             }
 
-            if ($preparedCondition instanceof Condition) {
+            if ($preparedCondition instanceof ConditionInterface) {
                 $preparedCondition = $preparedCondition->build();
             } elseif (is_null($preparedCondition)) {
                 $preparedCondition = 'null';

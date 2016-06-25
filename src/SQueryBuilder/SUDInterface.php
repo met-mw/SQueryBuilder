@@ -1,8 +1,8 @@
 <?php
-namespace SQueryBuilder\Interfaces;
+namespace SQueryBuilder;
 
 
-interface InterfaceSUD extends InterfaceQuery
+interface SUDInterface extends QueryInterface
 {
 
     /**

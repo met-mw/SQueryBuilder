@@ -1,11 +1,10 @@
 <?php
-namespace SQueryBuilder\Classes;
+namespace SQueryBuilder;
 
 
 use InvalidArgumentException;
-use SQueryBuilder\Interfaces\InterfaceOrder;
 
-class Order implements InterfaceOrder
+class Order implements OrderInterface
 {
 
     /** @var <string, string>[] */

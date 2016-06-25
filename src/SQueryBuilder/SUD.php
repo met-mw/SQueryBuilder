@@ -1,14 +1,11 @@
 <?php
-namespace SQueryBuilder\Classes;
+namespace SQueryBuilder;
 
 
-use SQueryBuilder\Interfaces\InterfaceSUD;
-use SQueryBuilder\Interfaces\InterfaceWhere;
-
-abstract class SUD implements InterfaceSUD
+abstract class SUD implements SUDInterface
 {
 
-    /** @var InterfaceWhere */
+    /** @var WhereInterface */
     protected $where;
 
     public function __construct()

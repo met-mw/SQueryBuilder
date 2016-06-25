@@ -1,8 +1,8 @@
 <?php
-namespace SQueryBuilder\Interfaces;
+namespace SQueryBuilder;
 
 
-interface InterfaceWhere
+interface WhereInterface
 {
 
     /**
@@ -22,10 +22,10 @@ interface InterfaceWhere
     /**
      * Добавить условие
      *
-     * @param InterfaceCondition $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
-    public function addCondition(InterfaceCondition $condition);
+    public function addCondition(ConditionInterface $condition);
 
     /**
      * Построить блок условий

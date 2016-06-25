@@ -1,27 +1,27 @@
 <?php
-namespace SQueryBuilder\Interfaces;
+namespace SQueryBuilder;
 
 
-interface InterfaceQueryBuilder
+interface QueryBuilderInterface
 {
 
     /**
-     * @return InterfaceDelete
+     * @return DeleteInterface
      */
     public function delete();
 
     /**
-     * @return InterfaceInsert
+     * @return InsertInterface
      */
     public function insert();
 
     /**
-     * @return InterfaceSelect
+     * @return SelectInterface
      */
     public function select();
 
     /**
-     * @return InterfaceUpdate
+     * @return UpdateInterface
      */
     public function update();
 

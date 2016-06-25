@@ -1,10 +1,10 @@
 <?php
-namespace SQueryBuilder\Classes\Query;
+namespace SQueryBuilder\Query;
 
 
-use SQueryBuilder\Interfaces\InterfaceInsert;
+use SQueryBuilder\InsertInterface;
 
-class Insert implements InterfaceInsert
+class Insert implements InsertInterface
 {
 
     protected $table;

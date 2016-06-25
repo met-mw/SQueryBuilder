@@ -1,8 +1,8 @@
 <?php
-namespace SQueryBuilder\Interfaces;
+namespace SQueryBuilder;
 
 
-interface InterfaceDelete extends InterfaceSUD
+interface DeleteInterface extends SUDInterface
 {
 
     /**

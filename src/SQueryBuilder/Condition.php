@@ -1,12 +1,10 @@
 <?php
-namespace SQueryBuilder\Classes;
+namespace SQueryBuilder;
 
 
 use InvalidArgumentException;
-use SQueryBuilder\Interfaces\InterfaceCondition;
-use SQueryBuilder\Interfaces\InterfaceQuery;
 
-class Condition implements InterfaceCondition
+class Condition implements ConditionInterface
 {
 
     /** @var string */
@@ -36,7 +34,7 @@ class Condition implements InterfaceCondition
             $value = $value();
         }
 
-        if ($value instanceof InterfaceQuery) {
+        if ($value instanceof QueryInterface) {
             $value = "({$value->build()})";
         } elseif (is_string($value)) {
             $value = $value == '?' ? $value : "'{$value}'";
