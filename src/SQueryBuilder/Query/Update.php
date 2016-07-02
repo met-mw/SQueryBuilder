@@ -21,7 +21,7 @@ class Update extends SUD implements UpdateInterface
             $preparedValue = $value;
             if (is_callable($value)) {
                 $preparedValue = $value();
-            } elseif (is_string($value)) {
+            } elseif (is_string($value) && $value != '?') {
                 $preparedValue = "'{$value}'";
             } elseif (is_null($value)) {
                 $preparedValue = 'null';
