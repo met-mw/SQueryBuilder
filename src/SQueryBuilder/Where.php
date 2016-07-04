@@ -115,7 +115,7 @@ class Where implements WhereInterface
      */
     public function openBracket()
     {
-        $this->conditions = '(';
+        $this->conditions[] = '(';
         return $this;
     }
 
