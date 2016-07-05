@@ -21,6 +21,30 @@ class Condition implements ConditionInterface
         $this->setValue($value);
     }
 
+    protected function prepareValue($inputValue)
+    {
+        $value = $inputValue;
+        if (is_callable($inputValue)) {
+            $value = $this->prepareValue($inputValue());
+        } elseif ($inputValue instanceof QueryInterface) {
+            $value = "({$inputValue->build()})";
+        } elseif (is_array($inputValue)) {
+            $value = '';
+            foreach ($inputValue as $item) {
+                $value .= empty($value) ? $this->prepareValue($item) : ',' . $this->prepareValue($item);
+            }
+            $value = "({$value})";
+        } elseif (is_numeric($inputValue)) {
+            $value = is_integer($inputValue) ? (int)$inputValue : (double)$inputValue;
+        } elseif (is_string($inputValue)) {
+            $value = $inputValue == '?' ? $inputValue : "'{$inputValue}'";
+        } elseif (is_null($inputValue)) {
+            $value = 'null';
+        }
+
+        return $value;
+    }
+
     /**
      * Построить условие
      *
@@ -29,20 +53,7 @@ class Condition implements ConditionInterface
     public function build()
     {
         $condition = "`{$this->getField()}` {$this->getOperator()} ";
-        $value = $this->getValue();
-        if (is_callable($value)) {
-            $value = $value();
-        }
-
-        if ($value instanceof QueryInterface) {
-            $value = "({$value->build()})";
-        } elseif (is_string($value)) {
-            $value = $value == '?' ? $value : "'{$value}'";
-        } elseif (is_null($value)) {
-            $value = 'null';
-        }
-
-        return $condition . $value;
+        return $condition . $this->prepareValue($this->getValue());
     }
 
     /**
