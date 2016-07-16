@@ -17,7 +17,12 @@ class Order implements OrderInterface
     {
         $orders = [];
         foreach ($this->orders as $field => $direction) {
-            $orders[] = "`{$field}` {$direction}";
+            if ($field == '?') {
+                $orders[] = "? {$direction}";
+            } else {
+                $orders[] = "`{$field}` {$direction}";
+            }
+
         }
 
         return (!empty($orders) ? 'ORDER BY ' : '') . implode(', ', $orders);
