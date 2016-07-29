@@ -124,7 +124,8 @@ class Where implements WhereInterface
      */
     public function needAnd()
     {
-        return !in_array($this->conditions[sizeof($this->conditions)-1], ['AND', 'OR']);
+        return !empty($this->conditions)
+            && !in_array($this->conditions[sizeof($this->conditions)-1], ['AND', 'OR']);
     }
 
 }
