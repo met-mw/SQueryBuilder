@@ -31,6 +31,10 @@ abstract class SUD implements SUDInterface
      */
     public function whereExpression($expression)
     {
+        if ($this->where->needAnd()) {
+            $this->whereAnd();
+        }
+
         $this->where->addExpression($expression);
         return $this;
     }
