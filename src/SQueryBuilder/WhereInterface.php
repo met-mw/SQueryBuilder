@@ -51,4 +51,9 @@ interface WhereInterface
      */
     public function openBracket();
 
+    /**
+     * @return bool
+     */
+    public function needAnd();
+
 }

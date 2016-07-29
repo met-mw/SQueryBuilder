@@ -15,6 +15,10 @@ abstract class SUD implements SUDInterface
 
     public function where($field, $operator, $value)
     {
+        if ($this->where->needAnd()) {
+            $this->whereAnd();
+        }
+
         $this->where->addCondition(new Condition($field, $operator, $value));
         return $this;
     }
